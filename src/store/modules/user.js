@@ -2,6 +2,7 @@ import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
+// 要共享的状态
 const state = {
   token: getToken(),
   name: '',
@@ -10,6 +11,7 @@ const state = {
   roles: []
 }
 
+// 用来操作状态
 const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
@@ -28,8 +30,10 @@ const mutations = {
   }
 }
 
+// 异步操作，放在action中
 const actions = {
   // user login
+  // 登录之后给仓库的token赋值
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
@@ -45,6 +49,7 @@ const actions = {
   },
 
   // get user info
+  // 拿到用户信息后给仓库中对应字段赋值
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
@@ -103,6 +108,7 @@ const actions = {
   },
 
   // dynamically modify permissions
+  // 动态生成路由
   async changeRoles({ commit, dispatch }, role) {
     const token = role + '-token'
 

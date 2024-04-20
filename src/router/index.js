@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
+// layout组件，一级路由出口匹配layout组件
 import Layout from '@/layout'
 
 /* Router Modules */
@@ -38,6 +39,16 @@ import nestedRouter from './modules/nested'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
+/**
+ * 每一个路由规则其实就是一个对象
+  {
+    path：匹配路由路径
+    component：路由出口组件
+    hidden：是否在侧边栏显示
+    children：子路由
+  }
+ */
+// 静态路由，所有用户都可以访问
 export const constantRoutes = [
   {
     path: '/redirect',
@@ -128,6 +139,7 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
+// 动态路由，根据权限进行访问
 export const asyncRoutes = [
   {
     path: '/permission',
@@ -138,6 +150,8 @@ export const asyncRoutes = [
     meta: {
       title: 'Permission',
       icon: 'lock',
+      // 哪些角色用户可以访问
+      // 此项目默认只有这两个角色
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
@@ -387,6 +401,8 @@ export const asyncRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+// 创建路由对象
+// 不同用户的路由规则是计算出来的，然后将侧边栏渲染出来
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
