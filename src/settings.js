@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Vue Element Admin',
+  title: '目标管理工作指标考核系统-武汉工程科技学院',
 
   /**
    * @type {boolean} true | false
