@@ -44,6 +44,7 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
+        // @代表src目录
         '@': resolve('src')
       }
     }

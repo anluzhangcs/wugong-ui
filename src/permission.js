@@ -19,6 +19,10 @@ const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 // 全局前置路由守卫
 // 核心代码都在守卫中
+// 添加全局导航守卫的钩子 router.beforeEach(function(to,from,next))
+// 这里的async是什么意思？在这个函数中，要使用await把Promise变成同步代码
+// 知识点：async/await 是Promise同步语法的语法糖
+// 这个路由钩子，每次访问路由或切换路由时，都会执行，相当于一个“保安”
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()

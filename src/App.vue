@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    // 一级路由的出口
+    <!-- 一级路由的出口 -->
     <router-view />
   </div>
 </template>
